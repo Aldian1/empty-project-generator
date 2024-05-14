@@ -2,9 +2,25 @@
 // Use chakra-ui
 import { Container, Text, VStack } from "@chakra-ui/react";
 
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+import D3Chart from "../components/D3Chart";
+
+const data = {
+  nodes: [
+    { id: "1", group: 1 },
+    { id: "2", group: 1 },
+    { id: "3", group: 2 },
+    { id: "4", group: 2 },
+    { id: "5", group: 3 },
+    { id: "6", group: 3 }
+  ],
+  links: [
+    { source: "1", target: "2", value: 1 },
+    { source: "2", target: "3", value: 1 },
+    { source: "3", target: "4", value: 1 },
+    { source: "4", target: "5", value: 1 },
+    { source: "5", target: "6", value: 1 }
+  ]
+};
 
 const Index = () => {
   return (
@@ -12,6 +28,7 @@ const Index = () => {
       <VStack spacing={4}>
         <Text fontSize="2xl">Your Blank Canvas</Text>
         <Text>Chat with the agent to start making edits.</Text>
+        <D3Chart data={data} />
       </VStack>
     </Container>
   );
