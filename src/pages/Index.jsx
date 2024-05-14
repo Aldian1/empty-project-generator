@@ -1,6 +1,5 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
+import { Button, Container, Text, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 
 import D3Chart from "../components/D3Chart";
 
@@ -23,12 +22,24 @@ const data = {
 };
 
 const Index = () => {
+  const [chartData, setChartData] = useState(data);
+
+  const addNode = () => {
+    const newNode = { id: (chartData.nodes.length + 1).toString(), group: 1 };
+    const newLink = { source: chartData.nodes[chartData.nodes.length - 1].id, target: newNode.id, value: 1 };
+    setChartData({
+      nodes: [...chartData.nodes, newNode],
+      links: [...chartData.links, newLink]
+    });
+  };
+
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <VStack spacing={4}>
         <Text fontSize="2xl">Your Blank Canvas</Text>
         <Text>Chat with the agent to start making edits.</Text>
-        <D3Chart data={data} />
+        <Button onClick={addNode} colorScheme="teal" size="md">Add Node</Button>
+        <D3Chart data={chartData} />
       </VStack>
     </Container>
   );
