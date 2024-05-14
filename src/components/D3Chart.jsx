@@ -5,8 +5,8 @@ const D3Chart = ({ data }) => {
   const chartRef = useRef();
 
   useEffect(() => {
-    const width = 928;
-    const height = 680;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -16,14 +16,15 @@ const D3Chart = ({ data }) => {
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id))
       .force("charge", d3.forceManyBody())
-      .force("x", d3.forceX())
-      .force("y", d3.forceY());
+      .force("center", d3.forceCenter(0, 0)) // Center the force layout
+      .force("x", d3.forceX().strength(0.05)) // Reduce the strength of the x-force
+      .force("y", d3.forceY().strength(0.05)); // Reduce the strength of the y-force
 
     const svg = d3.select(chartRef.current)
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", [-width / 2, -height / 2, width, height])
-      .attr("style", "max-width: 100%; height: auto;");
+      .attr("style", "width: 100vw; height: 100vh;");
 
     const link = svg.append("g")
       .attr("stroke", "#999")
