@@ -1,6 +1,5 @@
 import { Button, Container, VStack } from "@chakra-ui/react";
 import { useState } from "react";
-
 import D3Chart from "../components/D3Chart";
 
 const data = {
@@ -33,11 +32,23 @@ const Index = () => {
     });
   };
 
+  const loadFiles = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.webkitdirectory = true;
+    input.multiple = true;
+    input.onchange = (e) => {
+      const files = Array.from(e.target.files);
+      console.log(files);
+    };
+    input.click();
+  };
+
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <VStack spacing={4}>
-        
         <Button onClick={addNode} colorScheme="teal" size="md">Add Node</Button>
+        <Button onClick={loadFiles} colorScheme="blue" size="md">Load</Button>
         <D3Chart data={chartData} />
       </VStack>
     </Container>
