@@ -1,4 +1,4 @@
-import { Button, Container, Text, VStack } from "@chakra-ui/react";
+import { Button, Container, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 
 import D3Chart from "../components/D3Chart";
@@ -36,8 +36,7 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
+        
         <Button onClick={addNode} colorScheme="teal" size="md">Add Node</Button>
         <D3Chart data={chartData} />
       </VStack>
