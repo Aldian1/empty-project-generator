@@ -16,7 +16,7 @@ const D3Chart = ({ data }) => {
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id))
       .force("charge", d3.forceManyBody())
-      .force("center", d3.forceCenter(0, 0)) // Center the force layout
+      .force("center", d3.forceCenter(width / 2, height / 2)) // Center the force layout
       .force("x", d3.forceX().strength(0.05)) // Reduce the strength of the x-force
       .force("y", d3.forceY().strength(0.05)); // Reduce the strength of the y-force
 
