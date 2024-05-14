@@ -1,4 +1,4 @@
-import { Button, Container, VStack } from "@chakra-ui/react";
+import { Box, Button, Container, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 
 import D3Chart from "../components/D3Chart";
@@ -34,10 +34,13 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" position="relative">
+      <Box position="absolute" top="20px" zIndex="1">
+        <Button onClick={addNode} colorScheme="teal" size="md">Add Node</Button>
+      </Box>
       <VStack spacing={4}>
         
-        <Button onClick={addNode} colorScheme="teal" size="md">Add Node</Button>
+        
         <D3Chart data={chartData} />
       </VStack>
     </Container>
